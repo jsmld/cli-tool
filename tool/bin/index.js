@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const arg = require('arg')
+import arg from 'arg'
+import chalk from 'chalk'
 
 try {
   const args = arg({
@@ -7,15 +8,17 @@ try {
     '--build': Boolean
   })
 
-  if (args['--start']) console.log('Starting app...')
+  if (args['--start']) {
+    console.log(chalk.bgCyanBright('Starting app...'))
+  }
 } catch (error) {
-  console.log(error.message)
+  console.log(chalk.yellow(error.message))
   console.log()
   usage()
 }
 
 function usage () {
-  console.log(`tool [CMD]
-  --start\tStarts the app
-  --build\tBuilds the app`)
+  console.log(`${chalk.whiteBright('tool [CMD]')}
+  ${chalk.greenBright('--start\tStarts the app')}
+  ${chalk.greenBright('--build\tBuilds the app')}`)
 }
